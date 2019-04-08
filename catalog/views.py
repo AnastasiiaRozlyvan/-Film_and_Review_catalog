@@ -1,7 +1,8 @@
 from django.http import HttpResponse
+from django.template import loader
 from .models import Bd
 def index(request) :
-    s = "Here will be film and review catalog.\r\n"
-    for bb in Bd.objects.order_by('-title'):
-        s += bb.title  + bb.content
-    return HttpResponse(s)
+    template = loader.get_template('catalog/index.html')
+    bbs = Bd.objects.order_by('-title')
+    context = {'bbs': bbs}
+    return HttpResponse(template.render(context, request))
