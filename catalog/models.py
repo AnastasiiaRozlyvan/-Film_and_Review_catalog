@@ -22,3 +22,10 @@ class MovieDescription(models.Model):
     class Meta:
         verbose_name_plural = 'descriptions'
         verbose_name = 'description'
+
+
+class Comments:
+    movie = models.OneToOneField('Movie', on_delete=models.CASCADE, null=True)
+    text = models.TextField(null=True, blank=True, verbose_name='text')
+    date_stamp = models.DateTimeField(auto_now_add=True, db_index=True)
+

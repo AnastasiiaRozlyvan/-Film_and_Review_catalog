@@ -13,7 +13,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-class BdCreateView(CreateView):
+class MovieCreateView(CreateView):
     template_name = 'catalog/create.html'
     form_class = BdForm
     success_url = reverse_lazy('index')
