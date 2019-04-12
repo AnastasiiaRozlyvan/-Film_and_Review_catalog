@@ -7,12 +7,13 @@
     </head>
     <body>
         <h1>Films and Review</h1>
-        {% for bb in bbs %}
+        {% for movie in movies %}
         <div>
-            <h2>{{ bb.title }}</h2>
-            <p> {{ bb.content }}</p>
-            <p> {{ bb.year }}</p>
+            <h2>{{ movie.title }}</h2>
+            <p> {{ movie.content }}</p>
+            <p> {{ movie.year }}</p>
         </div>
         {% endfor %}
+<!--    <a href="{% url 'comment' %}">comment</a>-->
     </body>
 </html>
