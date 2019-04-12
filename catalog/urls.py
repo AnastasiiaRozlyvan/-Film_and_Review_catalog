@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import BdCreateView
+from .views import MovieCreateView
 from .views import index
 urlpatterns = [path('', index, name='index'),
-               path('add/', BdCreateView.as_view(), name='add'), ]
+               path('add/', MovieCreateView.as_view(), name='add'),
+               ]

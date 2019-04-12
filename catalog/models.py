@@ -28,3 +28,4 @@ class Comments:
     movie = models.OneToOneField('Movie', on_delete=models.CASCADE, null=True)
     text = models.TextField(null=True, blank=True, verbose_name='text')
     date_stamp = models.DateTimeField(auto_now_add=True, db_index=True)
+
