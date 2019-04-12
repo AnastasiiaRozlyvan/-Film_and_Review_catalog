@@ -24,8 +24,12 @@ class MovieDescription(models.Model):
         verbose_name = 'description'
 
 
-class Comments:
+class Comments(models.Model):
     movie = models.OneToOneField('Movie', on_delete=models.CASCADE, null=True)
     text = models.TextField(null=True, blank=True, verbose_name='text')
     date_stamp = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    class Meta:
+        verbose_name_plural = 'comments'
+        verbose_name = 'comment'
 
