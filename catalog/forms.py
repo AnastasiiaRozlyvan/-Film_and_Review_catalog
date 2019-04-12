@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from .models import Bd
+from .models import Movie
 class BdForm(ModelForm):
 
 
     class Meta:
-        model = Bd
+        model = Movie
         fields = ('title', 'content')

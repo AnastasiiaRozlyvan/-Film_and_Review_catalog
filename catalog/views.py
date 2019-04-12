@@ -1,15 +1,16 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import Bd
+from .models import Movie
 from django.urls import reverse_lazy
-def index(request):
-    template = loader.get_template('catalog/index.html')
-    bbs = Bd.objects.order_by('-title')
-    context = {'bbs': bbs}
-    return HttpResponse(template.render(context, request))
-
 from django.views.generic.edit import CreateView
 from .forms import BdForm
+
+
+def index(request):
+    template = loader.get_template('catalog/index.html')
+    bbs = Movie.objects.order_by('-title')
+    context = {'bbs': bbs}
+    return HttpResponse(template.render(context, request))
 
 
 class BdCreateView(CreateView):
