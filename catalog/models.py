@@ -41,11 +41,15 @@ class Cast(models.Model):
     name = models.TextField(null=True, blank=True, verbose_name='Name')
 
     class Meta:
-        verbose_name_plural = 'casts'
-        verbose_name = 'cast'
+        verbose_name_plural = 'actors'
+        verbose_name = 'actor'
 
 
 class Staff(models.Model):
     movie = models.ForeignKey('Movie', on_delete=models.CASCADE, null=True)
     name = models.TextField(null=True, blank=True, verbose_name='Name')
     position = models.TextField(null=True, blank=True, verbose_name='Position')
+
+    class Meta:
+        verbose_name_plural = 'Film crew members'
+        verbose_name = 'Film crew member'

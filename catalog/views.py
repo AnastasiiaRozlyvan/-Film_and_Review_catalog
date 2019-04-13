@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
 from .models import Movie
+from .models import Cast
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .forms import MovieAddingForm, CommentAddingForm
@@ -11,6 +13,16 @@ def index(request):
     movies = Movie.objects.order_by('-title')
     context = {'movies': movies}
     return HttpResponse(template.render(context, request))
+
+
+def statistics(request):
+    num_films = Movie.objects.all().count()
+    num_actors = Cast.objects.all().count()
+    context = {
+        'num_films': num_films,
+        'num_actors': num_actors,
+            }
+    return render(request, 'catalog/statistics.html', context=context)
 
 
 class MovieCreateView(CreateView):
