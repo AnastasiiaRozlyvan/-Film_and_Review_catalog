@@ -5,7 +5,7 @@ from .models import Movie, Comments
 class MovieAddingForm(ModelForm):
     class Meta:
         model = Movie
-        fields = ('title', 'content', 'year')
+        fields = ('title', 'directed_by', 'year', 'genre', )
 
 
 class CommentAddingForm(ModelForm):

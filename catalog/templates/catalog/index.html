@@ -10,8 +10,9 @@
         {% for movie in movies %}
         <div>
             <h2>{{ movie.title }}</h2>
-            <p> {{ movie.content }}</p>
+            <p> Directed by {{ movie.directed_by }}</p>
             <p> {{ movie.year }}</p>
+            <p> {{ movie.genre}}</p>
         </div>
         {% endfor %}
 <!--    <a href="{% url 'comment' %}">comment</a>-->

@@ -3,7 +3,8 @@ from django.db import models
 
 class Movie(models.Model):
     title = models.CharField(max_length=50, verbose_name='Title')
-    content = models.TextField(null=True, blank=True, verbose_name='Content')
+    directed_by = models.CharField(max_length=50, null=True, blank=True, verbose_name='Directed by')
+    genre = models.CharField(max_length=90, null=True, blank=True, verbose_name='Genre')
     year = models.CharField(max_length=4, verbose_name='Year')
 
     def __str__(self):
@@ -33,3 +34,18 @@ class Comments(models.Model):
         verbose_name_plural = 'comments'
         verbose_name = 'comment'
 
+
+class Cast(models.Model):
+    movie = models.ForeignKey('Movie', on_delete=models.CASCADE, null=True)
+    role = models.TextField(null=True, blank=True, verbose_name='Role')
+    name = models.TextField(null=True, blank=True, verbose_name='Name')
+
+    class Meta:
+        verbose_name_plural = 'casts'
+        verbose_name = 'cast'
+
+
+class Staff(models.Model):
+    movie = models.ForeignKey('Movie', on_delete=models.CASCADE, null=True)
+    name = models.TextField(null=True, blank=True, verbose_name='Name')
+    position = models.TextField(null=True, blank=True, verbose_name='Position')
