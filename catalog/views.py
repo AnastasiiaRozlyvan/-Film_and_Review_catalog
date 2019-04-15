@@ -16,13 +16,14 @@ def index(request):
 
 
 def statistics(request):
+    template = loader.get_template('catalog/statistics.html')
     num_films = Movie.objects.all().count()
     num_actors = Cast.objects.all().count()
     context = {
         'num_films': num_films,
         'num_actors': num_actors,
             }
-    return render(request, 'catalog/statistics.html', context=context)
+    return HttpResponse(template.render(context, request))
 
 
 class MovieCreateView(CreateView):
