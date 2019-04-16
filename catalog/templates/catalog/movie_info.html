@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Info - Film and Review</title>
+        <a href="{% url 'add' %}">Add a movie</a>
+        <a href="{% url 'statistics' %}">Statistics</a>
+    </head>
+    <body>
+        <h1>Info</h1>
+        <h3>{{ MovieDescription.movie}}</h3>
+        <p>{{ MovieDescription.synopsis}}</p>
+        <p>IMDB: {{ MovieDescription.rate}}</p>
+    </body>
+</html>

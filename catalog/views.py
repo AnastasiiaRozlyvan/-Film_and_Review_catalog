@@ -1,17 +1,18 @@
 from django.http import HttpResponse
 from django.template import loader
-from django.shortcuts import render
-from .models import Movie
+from .models import Movie, MovieDescription
 from .models import Cast
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 from .forms import MovieAddingForm, CommentAddingForm
 
 
 def index(request):
     template = loader.get_template('catalog/index.html')
-    movies = Movie.objects.order_by('-title')
-    context = {'movies': movies}
+    movies = Movie.objects.all()
+    descr = MovieDescription.objects.all()
+    context = {'movies': movies, 'descr': descr}
     return HttpResponse(template.render(context, request))
 
 
@@ -44,3 +45,9 @@ class CommentCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+
+class InfoView(DetailView):
+    template_name = 'catalog/movie_info.html'
+    model = MovieDescription
+    context_object_name = 'MovieDescription'
