@@ -8,12 +8,12 @@
     </head>
     <body>
         <h1>Films and Review</h1>
-        {% for movie in movies %}
+        {% for d in descr %}
         <div>
-            <h2>{{ movie.title }}</h2>
-            <p> Directed by {{ movie.directed_by }}</p>
-            <p> {{ movie.year }}</p>
-            <p> {{ movie.genre}}</p>
+            <h2><a href="{{ d.get_absolute_url }}">{{ d.movie }}</a></h2>
+            <p> Directed by {{ d.movie.directed_by }}</p>
+            <p> {{ d.movie.year }}</p>
+            <p> {{ d.movie.genre}}</p>
         </div>
         {% endfor %}
     </body>

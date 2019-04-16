@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Movie(models.Model):
@@ -28,6 +29,9 @@ class MovieDescription(models.Model):
     class Meta:
         verbose_name_plural = 'descriptions'
         verbose_name = 'description'
+
+    def get_absolute_url(self):
+        return reverse('movie_info', args=[str(self.pk)])
 
 
 class Comments(models.Model):
