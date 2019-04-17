@@ -10,9 +10,8 @@ from .forms import MovieAddingForm, CommentAddingForm
 
 def index(request):
     template = loader.get_template('catalog/index.html')
-    movies = Movie.objects.all()
     descr = MovieDescription.objects.all()
-    context = {'movies': movies, 'descr': descr}
+    context = {'descriptions': descr}
     return HttpResponse(template.render(context, request))
 
 
