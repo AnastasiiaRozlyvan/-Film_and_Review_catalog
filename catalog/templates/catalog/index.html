@@ -1,7 +1,6 @@
 {% extends "base_generic.html" %}
 {% block content %}
 <h1>Films and Review</h1>
-<a href="{% url 'statistics' %}">Statistics</a>
 {% for d in descriptions %}
 <div>
     <h2><a href="{{ d.get_absolute_url }}">{{ d.movie }}</a></h2>

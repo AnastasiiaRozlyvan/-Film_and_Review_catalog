@@ -1,8 +1,6 @@
 {% extends "base_generic.html" %}
 {% block content %}
 <h1>Info</h1>
-<a href="{% url 'index' %}">Home</a>
-<a href="{% url 'statistics' %}">Statistics</a>
 <h3>{{ MovieDescription.movie}} ({{MovieDescription.movie.year}})</h3>
 <p>{{ MovieDescription.synopsis}}</p>
 <p>IMDB: {{ MovieDescription.rate}}</p>
