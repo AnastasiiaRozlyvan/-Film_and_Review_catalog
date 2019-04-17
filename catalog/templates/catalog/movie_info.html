@@ -14,7 +14,7 @@
 </td>
  <td>
  <ul>
-        <li>{{MovieDescription.movie.directed_by}} as director</li>
+     <li>{{MovieDescription.movie.directed_by}} as director</li>
     {% for member in MovieDescription.movie.staff_set.all %}
         <li> {{member}} as {{member.position}}</li>
     {% endfor %}
