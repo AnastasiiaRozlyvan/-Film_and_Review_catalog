@@ -5,7 +5,8 @@
     <title>Films and Review</title>
 </head>
 <body>
-<table><td valign="top">
+<table cellspacing=25>
+<td valign="top">
 {% block sidebar %}
 <ul class="sidebar-nav">
    {% if user.is_authenticated %}
@@ -15,12 +16,13 @@
      <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
    {% endif %}
     <li><a href="{% url 'add' %}">Add a movie</a></li>
+    <li><a href="{% url 'statistics' %}">Statistics</a></li>
+    <li><a href="{% url 'index' %}">Home</a></li>
   </ul>
 {% endblock %}
     </td>
     <td valign="top">
 {% block content %}
-
 {% endblock %}
     </td>
 </table>

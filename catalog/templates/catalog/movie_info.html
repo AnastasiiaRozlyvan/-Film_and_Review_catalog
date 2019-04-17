@@ -1,8 +1,6 @@
 {% extends "base_generic.html" %}
 {% block content %}
 <h1>Info</h1>
-<a href="{% url 'index' %}">Home</a>
-<a href="{% url 'statistics' %}">Statistics</a>
 <h3>{{ MovieDescription.movie}} ({{MovieDescription.movie.year}})</h3>
 <p>{{ MovieDescription.synopsis}}</p>
 <p>IMDB: {{ MovieDescription.rate}}</p>
@@ -16,7 +14,7 @@
 </td>
  <td>
  <ul>
-        <li>{{MovieDescription.movie.directed_by}} as director</li>
+     <li>{{MovieDescription.movie.directed_by}} as director</li>
     {% for member in MovieDescription.movie.staff_set.all %}
         <li> {{member}} as {{member.position}}</li>
     {% endfor %}
