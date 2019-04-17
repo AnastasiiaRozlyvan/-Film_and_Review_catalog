@@ -1,32 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Info - Film and Review</title>
-        <a href="{% url 'add' %}">Add a movie</a>
-        <a href="{% url 'statistics' %}">Statistics</a>
-        <a href="{% url 'index' %}">Home</a>
-    </head>
-    <body>
-        <h1>Info</h1>
-        <h3>{{ MovieDescription.movie}}</h3>
-        <p>{{ MovieDescription.synopsis}}</p>
-        <p>IMDB: {{ MovieDescription.rate}}</p>
-        <table><tr><td><h3>Cast</h3></td><td><h3>Crew</h3></td></tr>
-        <td>
-        <ul>
-            {% for actor in MovieDescription.movie.cast_set.all %}
-                <li>{{actor}} as {{actor.role}}</li>
-            {% endfor %}
-        </ul>
-        </td>
-         <td>
-         <ul>
-            {% for member in MovieDescription.movie.staff_set.all %}
-                <li> {{member}} as {{member.position}}</li>
-            {% endfor %}
-        </ul>
-         </td>
-        </table>
-    </body>
-</html>
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Info</h1>
+<a href="{% url 'index' %}">Home</a>
+<a href="{% url 'statistics' %}">Statistics</a>
+<h3>{{ MovieDescription.movie}} ({{MovieDescription.movie.year}})</h3>
+<p>{{ MovieDescription.synopsis}}</p>
+<p>IMDB: {{ MovieDescription.rate}}</p>
+<table><tr><td><h3>Cast</h3></td><td><h3>Crew</h3></td></tr>
+<td>
+<ul>
+    {% for actor in MovieDescription.movie.cast_set.all %}
+        <li>{{actor}} as {{actor.role}}</li>
+    {% endfor %}
+</ul>
+</td>
+ <td>
+ <ul>
+        <li>{{MovieDescription.movie.directed_by}} as director</li>
+    {% for member in MovieDescription.movie.staff_set.all %}
+        <li> {{member}} as {{member.position}}</li>
+    {% endfor %}
+</ul>
+ </td>
+</table>
+{% endblock %}
