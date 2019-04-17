@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Statistics - Film and Review</title>
-    <a href="{% url 'index' %}">Home</a>
-
-</head>
-<body>
+{% extends "base_generic.html" %}
+{% block content %}
 <h1>Statistics</h1>
 <p>There are {{ num_films }} movies in catalog.</p>
 <p>There are {{ num_actors}} actors in catalog.</p>
-</body>
-</html>
+<p><a href="{% url 'index' %}">Home<a/></p>
+{% endblock %}

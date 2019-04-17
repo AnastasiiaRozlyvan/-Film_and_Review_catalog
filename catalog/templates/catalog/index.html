@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Main - Film and Review</title>
-        <a href="{% url 'add' %}">Add a movie</a>
-        <a href="{% url 'statistics' %}">Statistics</a>
-    </head>
-    <body>
-        <h1>Films and Review</h1>
-        {% for d in descriptions %}
-        <div>
-            <h2><a href="{{ d.get_absolute_url }}">{{ d.movie }}</a></h2>
-            <p> Directed by {{ d.movie.directed_by }}</p>
-            <p> {{ d.movie.year }}</p>
-            <p> {{ d.movie.genre}}</p>
-        </div>
-        {% endfor %}
-    </body>
-</html>
+{% extends "base_generic.html" %}
+{% block content %}
+<h1>Films and Review</h1>
+<a href="{% url 'statistics' %}">Statistics</a>
+{% for d in descriptions %}
+<div>
+    <h2><a href="{{ d.get_absolute_url }}">{{ d.movie }}</a></h2>
+    <p> Directed by {{ d.movie.directed_by }}</p>
+    <p> {{ d.movie.year }}</p>
+    <p> {{ d.movie.genre}}</p>
+</div>
+{% endfor %}
+{% endblock %}

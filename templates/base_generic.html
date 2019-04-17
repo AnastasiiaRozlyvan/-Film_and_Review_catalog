@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Films and Review</title>
+</head>
+<body>
+<table><td valign="top">
+{% block sidebar %}
+<ul class="sidebar-nav">
+   {% if user.is_authenticated %}
+     <li>User: {{ user.get_username }}</li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+   {% else %}
+     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+   {% endif %}
+    <li><a href="{% url 'add' %}">Add a movie</a></li>
+  </ul>
+{% endblock %}
+    </td>
+    <td valign="top">
+{% block content %}
+
+{% endblock %}
+    </td>
+</table>
+</body>
+</html>
