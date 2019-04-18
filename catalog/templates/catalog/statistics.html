@@ -1,6 +1,10 @@
 {% extends "base_generic.html" %}
 {% block content %}
 <h1>Statistics</h1>
-<p>There are {{ num_films }} movies in catalog.</p>
-<p>There are {{ num_actors }} actors in catalog.</p>
+<ul type="square">
+<li>{{ num_films }} movies in catalog;</li>
+<li>{{ num_actors }} actors in catalog;</li>
+<li>{{ comment_count }} comments in catalog;</li>
+<li>{{ av_rate }} average rate.</li>
+</ul>
 {% endblock %}
