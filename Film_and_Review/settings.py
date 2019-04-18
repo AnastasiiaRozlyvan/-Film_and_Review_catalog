@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
+    'django.contrib.sites',
+    'django_comments',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,5 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/catalog'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1

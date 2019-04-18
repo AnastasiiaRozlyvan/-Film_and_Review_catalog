@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% block content %}
+{% load comments %}
 <h1>Info</h1>
 <h3>{{ MovieDescription.movie}} ({{MovieDescription.movie.year}})</h3>
 <p>{{ MovieDescription.synopsis}}</p>
@@ -11,6 +12,7 @@
         <li>{{actor}} as {{actor.role}}</li>
     {% endfor %}
 </ul>
+
 </td>
  <td>
  <ul>
@@ -19,6 +21,17 @@
         <li> {{member}} as {{member.position}}</li>
     {% endfor %}
 </ul>
+
  </td>
+    <tr><td>
+        <h4>Add a comment</h4>
+    {% render_comment_form for MovieDescription.movie %}
+    </td>
+    {% get_comment_count for MovieDescription.movie as comment_count %}
+    <td valign="top"><h4>Comments {{comment_count}}</h4>
+    {% render_comment_list for MovieDescription.movie %}</td>
+    </tr>
 </table>
+
+
 {% endblock %}

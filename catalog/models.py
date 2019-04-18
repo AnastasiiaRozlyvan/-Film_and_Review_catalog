@@ -23,8 +23,8 @@ class MovieDescription(models.Model):
 
     def __str__(self):
         if len(self.synopsis) >= 30:
-            return self.synopsis[0:30]
-        return "Description"
+            return (f'{self.synopsis[0:30]}...')
+        return self.synopsis
 
     class Meta:
         verbose_name_plural = 'descriptions'
@@ -32,16 +32,6 @@ class MovieDescription(models.Model):
 
     def get_absolute_url(self):
         return reverse('movie_info', args=[str(self.pk)])
-
-
-class Comments(models.Model):
-    movie = models.OneToOneField('Movie', on_delete=models.CASCADE, null=True)
-    text = models.TextField(null=True, blank=True, verbose_name='text')
-    date_stamp = models.DateTimeField(auto_now_add=True, db_index=True)
-
-    class Meta:
-        verbose_name_plural = 'comments'
-        verbose_name = 'comment'
 
 
 class Cast(models.Model):
