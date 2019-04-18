@@ -25,7 +25,11 @@
  </td>
     <tr><td>
         <h4>Add a comment</h4>
-    {% render_comment_form for MovieDescription.movie %}
+        {% if user.is_authenticated %}
+            {% render_comment_form for MovieDescription.movie %}
+        {% else %}
+            <p>Please <a href="{% url 'login' %}">log in</a> to leave a comment.</p>
+        {% endif %}
     </td>
     {% get_comment_count for MovieDescription.movie as comment_count %}
     <td valign="top"><h4>Comments {{comment_count}}</h4>
