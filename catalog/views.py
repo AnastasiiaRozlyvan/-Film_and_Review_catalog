@@ -1,13 +1,13 @@
 from django.http import HttpResponse
 from django.template import loader
-from .models import Movie, MovieDescription
-from .models import Cast
+from .models import Movie, MovieDescription, Cast
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic import DetailView
 from .forms import MovieAddingForm
 from django.db.models import Avg
 from django_comments.models import Comment
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def index(request):
@@ -32,7 +32,7 @@ def statistics(request):
     return HttpResponse(template.render(context, request))
 
 
-class MovieCreateView(CreateView):
+class MovieCreateView(LoginRequiredMixin, CreateView):
     template_name = 'catalog/create.html'
     form_class = MovieAddingForm
     success_url = reverse_lazy('index')
