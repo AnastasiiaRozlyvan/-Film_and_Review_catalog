@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 {% block content %}
 <h1>Films and Review</h1>
-{% for d in descriptions %}
+{% for d in object_list %}
 <div>
     <h2><a href="{{ d.get_absolute_url }}">{{ d.movie }}</a></h2>
     <p> Directed by {{ d.movie.directed_by }}</p>
@@ -9,4 +9,19 @@
     <p> {{ d.movie.genre}}</p>
 </div>
 {% endfor %}
+<div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock %}

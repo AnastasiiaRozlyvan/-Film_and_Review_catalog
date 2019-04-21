@@ -23,7 +23,7 @@ class MovieDescription(models.Model):
 
     def __str__(self):
         if len(self.synopsis) >= 30:
-            return (f'{self.synopsis[0:30]}...')
+            return f' {self.synopsis[0:30]}...'
         return self.synopsis
 
     class Meta:
