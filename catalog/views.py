@@ -3,18 +3,23 @@ from django.template import loader
 from .models import Movie, MovieDescription, Cast
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from .forms import MovieAddingForm
 from django.db.models import Avg
 from django_comments.models import Comment
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-def index(request):
-    template = loader.get_template('catalog/index.html')
-    descr = MovieDescription.objects.all()
-    context = {'descriptions': descr}
-    return HttpResponse(template.render(context, request))
+class MovieList(ListView):
+    template_name = 'catalog/index.html'
+    model = MovieDescription
+    paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        descr = MovieDescription.objects.all()
+        context['descriptions'] = {'descriptions': descr}
+        return context
 
 
 def statistics(request):
