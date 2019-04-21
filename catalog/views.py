@@ -8,6 +8,7 @@ from .forms import MovieAddingForm
 from django.db.models import Avg
 from django_comments.models import Comment
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 
 class MovieList(ListView):
@@ -20,6 +21,17 @@ class MovieList(ListView):
         descr = MovieDescription.objects.all()
         context['descriptions'] = {'descriptions': descr}
         return context
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return MovieDescription.objects.filter(Q(movie__title__icontains=query) |
+                                                   Q(movie__year__icontains=query) |
+                                                   Q(movie__genre__icontains=query) |
+                                                   Q(movie__directed_by__icontains=query) |
+                                                   Q(synopsis__icontains=query))
+        else:
+            return MovieDescription.objects.all()
 
 
 def statistics(request):
