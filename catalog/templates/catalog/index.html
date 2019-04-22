@@ -14,13 +14,13 @@
     <p> {{ d.movie.genre}}</p>
 </div>
 {% endfor %}
-<div class="pagination">
-        <span class="step-links">
+<div>
+        <span>
             {% if page_obj.has_previous %}
                 <a href="?page={{ page_obj.previous_page_number }}">previous</a>
             {% endif %}
 
-            <span class="current">
+            <span>
                 Page {{ page_obj.number }} of {{ paginator.num_pages }}.
             </span>
 
@@ -28,5 +28,5 @@
                 <a href="?page={{ page_obj.next_page_number }}">next</a>
             {% endif %}
         </span>
-    </div>
+</div>
 {% endblock %}

@@ -29,7 +29,12 @@ class MovieList(ListView):
                                                    Q(movie__year__icontains=query) |
                                                    Q(movie__genre__icontains=query) |
                                                    Q(movie__directed_by__icontains=query) |
-                                                   Q(synopsis__icontains=query))
+                                                   Q(synopsis__icontains=query) |
+                                                   Q(movie__cast__role__icontains=query) |
+                                                   Q(movie__cast__name__icontains=query) |
+                                                   Q(movie__staff__name__icontains=query) |
+                                                   Q(movie__staff__position__icontains=query)
+                                                   ).distinct()
         else:
             return MovieDescription.objects.all()
 
