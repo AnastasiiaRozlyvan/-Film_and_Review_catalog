@@ -4,17 +4,16 @@ from .models import Movie, MovieDescription, Cast
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic import DetailView, ListView
-from .forms import MovieAddingForm
-from django.db.models import Avg
+from .forms import MovieAddingForm, MovieDescriptionAddingForm, ActorAddingForm, CrewAddingForm
+from django.db.models import Avg, Q
 from django_comments.models import Comment
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
 
 
 class MovieList(ListView):
     template_name = 'catalog/index.html'
     model = MovieDescription
-    paginate_by = 3
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -48,7 +47,7 @@ def statistics(request):
     context = {
         'num_films': num_films,
         'num_actors': num_actors,
-        'av_rate': av_rate['rate__avg'],
+        'av_rate': round(av_rate['rate__avg'], 2),
         'comment_count': comment_count,
             }
     return HttpResponse(template.render(context, request))
@@ -57,6 +56,36 @@ def statistics(request):
 class MovieCreateView(LoginRequiredMixin, CreateView):
     template_name = 'catalog/create.html'
     form_class = MovieAddingForm
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class MovieDescrCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'catalog/add_description.html'
+    form_class = MovieDescriptionAddingForm
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class ActorAddView(LoginRequiredMixin, CreateView):
+    template_name = 'catalog/add_actor.html'
+    form_class = ActorAddingForm
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class CrewAddView(LoginRequiredMixin, CreateView):
+    template_name = 'catalog/add_crew.html'
+    form_class = CrewAddingForm
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):

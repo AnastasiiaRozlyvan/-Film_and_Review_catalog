@@ -3,14 +3,13 @@
 <div>
 <h1>Films and Review</h1>
     <form method="GET" action="">
-          <input name="q" type="text" value="{{ request.GET.q }}" placeholder="Search..."/>
+          <input name="q" type="text" value="{{ request.GET.q }}" placeholder="Search by title, year, genre, synopsis"/>
     </form>
 </div>
 {% for d in object_list %}
 <div>
-    <h2><a href="{{ d.get_absolute_url }}">{{ d.movie }}</a></h2>
+    <h2><a href="{{ d.get_absolute_url }}">{{ d.movie }} ({{ d.movie.year }})</a></h2>
     <p> Directed by {{ d.movie.directed_by }}</p>
-    <p> {{ d.movie.year }}</p>
     <p> {{ d.movie.genre}}</p>
 </div>
 {% endfor %}
@@ -19,11 +18,9 @@
             {% if page_obj.has_previous %}
                 <a href="?page={{ page_obj.previous_page_number }}">previous</a>
             {% endif %}
-
             <span>
                 Page {{ page_obj.number }} of {{ paginator.num_pages }}.
             </span>
-
             {% if page_obj.has_next %}
                 <a href="?page={{ page_obj.next_page_number }}">next</a>
             {% endif %}

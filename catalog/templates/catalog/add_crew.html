@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta  http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Adding a crew member - Film and Review</title>
+    </head>
+    <body>
+        <h1>Adding a crew member</h1>
+            <div>
+                <a href="{% url 'index' %}">Back to the main page</a>
+            </div>
+        <form method="post"> {% csrf_token %} {{ form.as_p }}
+            <input type="submit" vаluе="Add">
+        </form>
+    </body>
+</html>
